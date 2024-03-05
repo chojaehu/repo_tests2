@@ -17,6 +17,64 @@
         WHERE 1=1
         ORDER BY a.number DESC
     </select>
+    
+    <select id="selectOne" resultMap="resultMapObj">
+        SELECT
+            a.number
+            ,a.groupname
+            ,a.regDate
+            ,a.mdfcnDate
+            ,a.deleteNY
+         FROM codegroup a
+        WHERE 1=1 
+        	AND a.number = #{number}
+    </select>
+    
+    <update id="update">
+    
+    UPDATE codegroup
+    SET
+    groupname = #{groupname}
+    
+    WHERE number = #{number}
+    
+    </update>
+    
+
+    <insert id="insert">
+    
+    INSERT INTO codegroup
+    (
+    groupname
+    ,deleteNY
+    )
+    VALUES
+    (
+    #{groupname}
+    ,#{deleteNY}
+    )
+    
+    </insert>
+    <update id="updatedelete">
+    
+    UPDATE codegroup
+    SET
+    deleteNY = 1
+    WHERE number = #{number}
+    
+    </update>
+    
+    
+    <delete id="delete">
+    DELETE 
+    FROM codegroup
+    WHERE number = #{number}
+    </delete>
+    
+    
+    
+
+
    <!--  ,(select count(aa.ifcdSeq) from infrCode aa where 1=1 and aa.ifcdDelNy = 0 and aa.ifcgSeq = a.ifcgSeq) as xifcdSeqCount -->
 	  
 </mapper>
